@@ -5,8 +5,7 @@
 
 ![Fitpro_logo](https://github.com/user-attachments/assets/922de619-dde8-4346-9b13-bf6dc1c5c7c1)
 
-
-Welcome to my first SQL project, where I analyze real-time gym data from **FitPro Gym**! This project uses a dataset of **10,000 visit records** to explore and analyze gym membership and visit data, answering key business questions that can help a fitness center understand its customer base better and optimize its services.
+Welcome to my inaugural SQL project, where I analyze real-time data from **FitPro Gym**! This project involves a dataset containing **10,000 visit records**, through which I explore and analyze gym membership and visit patterns. The goal is to answer key business questions that can provide valuable insights into the customer base, helping the fitness center optimize its services and improve overall operations.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -26,9 +25,9 @@ This project aims to demonstrate essential SQL skills by analyzing a dataset fro
 
 ## Project Structure
 
-1. **SQL Scripts**: Code to create the database schema and queries for analysis.
-2. **Dataset**: Real-time data on gym visits, membership, and member demographics.
-3. **Analysis**: SQL queries solving practical business problems, each one crafted to address specific questions.
+1. **SQL Scripts**: Code to define the database structure and run analysis queries.
+2. **Dataset**: Live data covering gym visits, memberships, and member demographics.
+3. **Analysis**: SQL queries designed to tackle real business questions, each tailored to provide specific insights.
 
 ---
 
