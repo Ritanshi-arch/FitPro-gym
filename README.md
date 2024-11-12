@@ -3,7 +3,7 @@ Google One subscription will be canceled … Update your payment method by Nov 2
 
 # FitPro Gym SQL Project
 
-![Project Image Placeholder]![Fitpro_logo](https://github.com/user-attachments/assets/c3c9acf7-659d-4024-9e58-c86381ab5d64)
+[Fitpro_logo](https://github.com/user-attachments/assets/c3c9acf7-659d-4024-9e58-c86381ab5d64)
 
 
 
@@ -67,25 +67,119 @@ The following queries were created to solve specific business questions. Each qu
    JOIN memberships as mt ON ms.member_id = mt.member_id
    WHERE mt.gender = 'F';
    ```
-3. Find members who have a **Monthly membership** and joined after **2023-11-01**.
-4. List the **name** and **status** of active members over **25**.
-5. Get details of **visits** on a specific date (**2024-01-01**).
-6. List members with a **Quarterly membership** aged between **20 and 30**.
+2. Find members who have a **Monthly membership** and joined after **2023-11-01**.
+   ```sql
+   SELECT *
+   FROM memberships
+   WHERE membership_type = 'Monthly'
+         AND
+         join_date > '2023-11-01';
+   ```   
+3. List the **name** and **status** of active members over **25**.
+   ```sql
+   SELECT ms.name, mt.status 
+   FROM members as ms
+   JOIN memberships as mt ON ms.member_id = mt.member_id
+   WHERE status = 'Active'
+         AND 
+         age > 25;
+   ```
+4. Get details of **visits** on a specific date (**2024-01-01**).
+   ```sql
+   SELECT * 
+   FROM visits
+   WHERE visit_date = '2024-01-01';
+   ```
+5. List members with a **Quarterly membership** aged between **20 and 30**.
+   ```sql
+   SELECT *
+   FROM memberships
+   WHERE membership_type = 'Quaterly'
+         AND
+         age between 20 and 30;
+   ```
 
 Additional aggregations and grouping:
 6. Count total visits made by each member.
+```sql
+   SELECT member_id, count(*) as total_visits
+   FROM visits
+   GROUP BY 1;
+```
 7. Count members by membership type (e.g., Monthly, Weekly, Quarterly).
+```sql
+   SELECT membership_type, count(membership_type) as cnt_of_members
+   FROM memberships
+   GROUP BY membership_type;
+```
 8. Calculate the average age of members, grouped by membership type.
+   ```sql
+   SELECT membership_type, avg(age) as avg_members
+   FROM memberships
+   GROUP BY 2;
+   ```
 9. Total visits for each visit date.
+   ```sql
+   SELECT visit_date, count(*) as number_of_visits
+   FROM visits
+   GROUP BY visit_date;
+   ```
 10. Count members by status (e.g., Active or Cancelled).
-
+    ```sql
+    SELECT status, count(*) as number_of_members
+    FROM memberships
+    WHERE status = 'Active' 
+          OR
+          status = 'Cancelled'
+    GROUP BY status;
+    ```
 Advanced queries:
 11. Top 3 members with the highest visits.
+ ```sql
+    SELECT ms.name, count(*) as total_visits
+    FROM members as ms
+    JOIN visits as v on ms.member_id = v.member_id
+    GROUP BY ms.name
+    ORDER BY total_visits desc
+    LIMIT 3;
+ ```
 12. Active Monthly members grouped by membership type, sorted by recent join dates.
-13. Members with more than 2 visits, sorted by total visits, displaying the top 5.
-14. Members who joined in 2023, grouped by membership type (where each group has >1 member).
-15. Average age of active members, grouped by membership type, limited to the top 3 results.
-
+    ```sql
+    SELECT membership_type, COUNT(*) as number_of_members 
+    FROM memberships
+    WHERE membership_type = 'Monthly' 
+          AND
+          status = 'Active'
+    GROUP BY membership_type
+    LIMIT 2;
+    ```
+14. Members with more than 2 visits, sorted by total visits, displaying the top 5.
+    ```sql
+    SELECT ms.name, COUNT(*) as total_visits
+    FROM members as ms
+    JOIN visits as v on ms.member_id = v.member_id
+    GROUP BY ms.name
+    HAVING count(*) > 2
+    ORDER BY total_visits
+    LIMIT 5; 
+    ```
+16. Members who joined in 2023, grouped by membership type (where each group has >1 member).
+    ```sql
+    SELECT membership_type, COUNT(*) AS number_of_number
+    FROM memberships
+    WHERE join_date BETWEEN '2023-01-01' AND '2023-12-31'
+    GROUP BY membership_type
+    HAVING COUNT(*) > 1;
+    ```
+18. Average age of active members, grouped by membership type, limited to the top 3 results.
+    ```sql
+    SELECT membership_type, avg(age) as avg_member 
+    FROM memberships
+    WHERE status = 'Active'
+    GROUP BY 1
+    ORDER BY 1 asc
+    LIMIT 3;
+    ```
 ---
 
 ## SQL Queries & Analysis
