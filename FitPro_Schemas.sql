@@ -1,6 +1,5 @@
 -- Setup FitPro Database Schemas
--- Drop tables if they exist
-DROP TABLE IF EXISTS visits, memberships, members;
+
 
 -- Create members table
 CREATE TABLE members (
