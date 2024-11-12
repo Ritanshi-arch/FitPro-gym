@@ -1,4 +1,3 @@
-Google One subscription will be canceled … Update your payment method by Nov 27, 2024 to renew your storage subscription
 ---
 
 # FitPro Gym SQL Project
